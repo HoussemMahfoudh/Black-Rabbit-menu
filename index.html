@@ -2180,7 +2180,364 @@
         height: 54px;
     }
 }
-
+/* ===== MODAL DE LIVRAISON ===== */
+    .delivery-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        animation: fadeInScale 0.3s ease-out;
+    }
+    
+    .delivery-modal.active {
+        display: flex;
+    }
+    
+    .delivery-modal-content {
+        background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+        border: 2px solid #8b7bff;
+        border-radius: 25px;
+        padding: 2rem;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(139, 123, 255, 0.3);
+    }
+    
+    .delivery-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: #ffd700;
+        font-size: 2rem;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+    
+    .delivery-modal-close:hover {
+        background: rgba(255, 215, 0, 0.1);
+        transform: rotate(90deg);
+    }
+    
+    .delivery-modal-title {
+        color: #ffd700;
+        font-size: 1.8rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    }
+    
+    .delivery-options {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+    
+    .delivery-option {
+        flex: 1;
+        min-width: 200px;
+        background: linear-gradient(135deg, rgba(26,26,26,0.9), rgba(42,42,42,0.9));
+        border: 2px solid rgba(139, 123, 255, 0.3);
+        border-radius: 20px;
+        padding: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .delivery-option:hover {
+        transform: translateY(-5px);
+        border-color: #8b7bff;
+        box-shadow: 0 10px 30px rgba(139, 123, 255, 0.3);
+    }
+    
+    .delivery-option.selected {
+        border-color: #ffd700;
+        background: linear-gradient(135deg, rgba(139, 123, 255, 0.2), rgba(106, 91, 255, 0.2));
+        transform: scale(1.02);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+    
+    .delivery-option-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .delivery-option-title {
+        color: #ffd700;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .delivery-option-desc {
+        color: #ccc;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .delivery-option-price {
+        color: white;
+        font-weight: 800;
+        font-size: 1.2rem;
+        background: linear-gradient(135deg, #8b7bff, #6a5bff);
+        display: inline-block;
+        padding: 0.3rem 1rem;
+        border-radius: 20px;
+    }
+    
+    .delivery-form {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(139, 123, 255, 0.2);
+        display: none;
+    }
+    
+    .delivery-form.active {
+        display: block;
+        animation: slideDown 0.5s ease-out;
+    }
+    
+    .delivery-form-title {
+        color: #ffd700;
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .delivery-form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .delivery-form-label {
+        display: block;
+        color: #ccc;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+        font-weight: 600;
+    }
+    
+    .delivery-form-icon {
+        margin-right: 5px;
+    }
+    
+    .delivery-form-input,
+    .delivery-form-textarea {
+        width: 100%;
+        padding: 12px 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(139, 123, 255, 0.3);
+        border-radius: 12px;
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .delivery-form-input:focus,
+    .delivery-form-textarea:focus {
+        outline: none;
+        border-color: #ffd700;
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .delivery-form-textarea {
+        min-height: 80px;
+        resize: vertical;
+    }
+    
+    .delivery-form-row {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .delivery-form-actions {
+        margin-top: 1rem;
+    }
+    
+    .delivery-form-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+    
+    .delivery-form-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
+    }
+    
+    .delivery-instructions {
+        background: linear-gradient(135deg, rgba(139, 123, 255, 0.1), rgba(106, 91, 255, 0.1));
+        border-radius: 15px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid #ffd700;
+        text-align: center;
+        display: none;
+    }
+    
+    .delivery-instructions.active {
+        display: block;
+    }
+    
+    .delivery-instructions p {
+        color: #ffd700;
+        margin: 5px 0;
+        font-size: 0.95rem;
+    }
+    
+    .delivery-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+    }
+    
+    .delivery-btn {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        min-width: 120px;
+    }
+    
+    .delivery-btn-primary {
+        background: linear-gradient(135deg, #8b7bff, #6a5bff);
+        color: white;
+        border: 1px solid #ffd700;
+    }
+    
+    .delivery-btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(139, 123, 255, 0.4);
+    }
+    
+    .delivery-btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .delivery-btn-secondary:hover {
+        background: rgba(255, 68, 68, 0.2);
+        border-color: #ff4444;
+    }
+    
+    /* ===== INFOS DE LIVRAISON DANS LE PANIER ===== */
+    .cart-delivery-info {
+        padding: 15px 20px;
+        background: linear-gradient(135deg, rgba(139, 123, 255, 0.1), rgba(106, 91, 255, 0.1));
+        border-top: 1px solid rgba(139, 123, 255, 0.3);
+        border-bottom: 1px solid rgba(139, 123, 255, 0.3);
+    }
+    
+    .cart-delivery-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        background: linear-gradient(135deg, #8b7bff, #6a5bff);
+        border-radius: 20px;
+        color: white;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        border: 1px solid #ffd700;
+    }
+    
+    .cart-delivery-details {
+        color: #ccc;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .cart-delivery-fee {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 20px;
+        color: #ffd700;
+        font-size: 0.95rem;
+        border-top: 1px dashed rgba(139, 123, 255, 0.3);
+    }
+    
+    .cart-grand-total {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+        color: white;
+        font-weight: 800;
+        font-size: 1.2rem;
+        background: rgba(139, 123, 255, 0.1);
+        border-top: 2px solid #ffd700;
+    }
+    
+    .cart-grand-total span:last-child {
+        color: #ffd700;
+        font-size: 1.4rem;
+    }
+    
+    @media (max-width: 480px) {
+        .delivery-modal-content {
+            padding: 1.5rem;
+        }
+        
+        .delivery-options {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .delivery-option {
+            min-width: 100%;
+        }
+        
+        .delivery-actions {
+            flex-direction: column;
+        }
+        
+        .delivery-btn {
+            width: 100%;
+        }
+        
+        .delivery-form-row {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
     </style>
 </head>
 <body>
@@ -5598,7 +5955,245 @@ observer.observe(document.body, {
                 }
             }
         }, true);
+        // ==================== SYSTÈME DE LIVRAISON ====================
+
+// Variables globales
+let currentDeliveryType = 'surplace';
+let deliveryInfo = {
+    name: 'Client Black Rabbit',
+    phone: '',
+    address: 'Kélibia',
+    city: '',
+    zip: ''
+};
+let deliveryFormValidated = false;
+
+// Fonction pour ouvrir le modal de livraison
+window.openDeliveryModal = function() {
+    const modal = document.getElementById('deliveryModal');
+    if (!modal) {
+        alert('Erreur: Modal non trouvé');
+        return;
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Reset de la sélection
+    selectDeliveryType(currentDeliveryType);
+    deliveryFormValidated = (currentDeliveryType === 'surplace');
+}
+
+// Fonction pour fermer le modal
+window.closeDeliveryModal = function() {
+    const modal = document.getElementById('deliveryModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Fonction pour sélectionner le type de livraison
+window.selectDeliveryType = function(type) {
+    currentDeliveryType = type;
+    
+    // Mettre à jour l'affichage des options
+    document.querySelectorAll('.delivery-option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    
+    const selectedOption = document.getElementById(`option-${type}`);
+    if (selectedOption) selectedOption.classList.add('selected');
+    
+    // Afficher/cacher le formulaire et les instructions
+    const form = document.getElementById('deliveryForm');
+    const instructions = document.getElementById('deliveryInstructions');
+    
+    if (type === 'livraison') {
+        if (form) form.classList.add('active');
+        if (instructions) instructions.classList.add('active');
+        deliveryFormValidated = false;
+    } else {
+        if (form) form.classList.remove('active');
+        if (instructions) instructions.classList.remove('active');
+        deliveryFormValidated = true;
+    }
+    
+    // Mettre à jour le texte du bouton
+    const confirmBtn = document.getElementById('confirmDeliveryBtn');
+    if (confirmBtn) {
+        confirmBtn.textContent = type === 'livraison' ? 'Confirmer la livraison' : 'Confirmer la commande';
+    }
+}
+
+// Fonction pour valider le formulaire de livraison
+function validateDeliveryForm() {
+    if (currentDeliveryType !== 'livraison') {
+        deliveryFormValidated = true;
+        return true;
+    }
+    
+    const name = document.getElementById('deliveryName')?.value.trim() || '';
+    const phone = document.getElementById('deliveryPhone')?.value.trim() || '';
+    const address = document.getElementById('deliveryAddress')?.value.trim() || '';
+    const city = document.getElementById('deliveryCity')?.value.trim() || '';
+    
+    // Validation du nom
+    if (!name) {
+        alert('❌ Veuillez entrer votre nom');
+        document.getElementById('deliveryName')?.focus();
+        return false;
+    }
+    
+    // Validation du téléphone - EXACTEMENT 8 CHIFFRES
+    if (!phone) {
+        alert('❌ Veuillez entrer votre numéro de téléphone');
+        document.getElementById('deliveryPhone')?.focus();
+        return false;
+    }
+    
+    // Vérifier que c'est exactement 8 chiffres
+    const phoneRegex = /^\d{8}$/;
+    if (!phoneRegex.test(phone)) {
+        alert('❌ Le numéro doit contenir exactement 8 chiffres (pas de lettres, pas d\'espaces)');
+        document.getElementById('deliveryPhone')?.focus();
+        return false;
+    }
+    
+    // Validation de l'adresse
+    if (!address) {
+        alert('❌ Veuillez entrer votre adresse');
+        document.getElementById('deliveryAddress')?.focus();
+        return false;
+    }
+    
+    // Sauvegarder les informations
+    deliveryInfo = {
+        name: name,
+        phone: phone,
+        address: address,
+        city: city,
+        zip: document.getElementById('deliveryZip')?.value.trim() || ''
+    };
+    
+    deliveryFormValidated = true;
+    
+    // Animation de confirmation
+    const btn = document.querySelector('.delivery-form-btn');
+    if (btn) {
+        btn.style.background = 'linear-gradient(135deg, #45a049, #4CAF50)';
+        btn.innerHTML = '✅ Validé !';
+        setTimeout(() => {
+            btn.innerHTML = '✅ Valider les informations';
+            btn.style.background = 'linear-gradient(135deg, #4CAF50, #45a049)';
+        }, 1500);
+    }
+    
+    alert('✅ Informations de livraison validées !');
+    return true;
+}
+
+// Fonction pour confirmer et commander
+window.confirmDeliveryType = function() {
+    console.log('confirmDeliveryType appelé'); // Pour debug
+    
+    if (currentDeliveryType === 'livraison' && !deliveryFormValidated) {
+        if (!validateDeliveryForm()) return;
+    }
+    
+    // Fermer le modal
+    closeDeliveryModal();
+    
+    // Générer le message et ouvrir WhatsApp
+    const message = generateWhatsAppMessage();
+    const phoneNumber = "21622787023";
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+}
+
+// Fonction pour générer le message WhatsApp
+window.generateWhatsAppMessage = function() {
+    let message = "🛒 *NOUVELLE COMMANDE Black Rabbit*\n\n";
+    let total = 0;
+    
+    // Articles commandés
+    message += "*📋 ARTICLES:*\n";
+    if (typeof cart !== 'undefined' && cart.items) {
+        cart.items.forEach(item => {
+            const itemTotal = parseFloat(item.price) * item.quantity;
+            total += itemTotal;
+            
+            let itemName = item.name;
+            if (item.size) itemName += ` (${item.size})`;
+            
+            message += `• ${itemName}\n`;
+            message += `  ${item.quantity} x ${item.price} DT = ${itemTotal.toFixed(3)} DT\n`;
+        });
+    }
+    
+    message += `\n💰 *SOUS-TOTAL: ${total.toFixed(3)} DT*\n`;
+    
+    // Frais de livraison
+    if (currentDeliveryType === 'livraison') {
+        message += `🛵 *Frais de livraison: +3 DT*\n`;
+        total += 3;
+    }
+    
+    message += `💵 *TOTAL À PAYER: ${total.toFixed(3)} DT*\n\n`;
+    
+    // Type de commande
+    message += `📦 *TYPE DE COMMANDE:*\n`;
+    if (currentDeliveryType === 'livraison') {
+        message += `🛵 Livraison à domicile\n\n`;
+        message += `📍 *INFORMATIONS DE LIVRAISON:*\n`;
+        message += `👤 Nom: ${deliveryInfo.name}\n`;
+        message += `📞 Tél: ${deliveryInfo.phone}\n`;
+        message += `🏠 Adresse: ${deliveryInfo.address}\n`;
         
+    } else {
+        message += `🏠 Consommation sur place\n`;
+    }
+    
+    message += "\n📍 *Black Rabbit Coffee Shop - Kélibia*\n";
+    message += "⏰ Merci de votre commande !";
+    
+    return encodeURIComponent(message);
+}
+
+// REDÉFINITION DE LA FONCTION CHECKOUT GLOBALE
+window.checkout = function() {
+    console.log('Nouvelle fonction checkout appelée'); // Pour debug
+    
+    if (typeof cart === 'undefined') {
+        alert('Erreur: Panier non initialisé');
+        return;
+    }
+    
+    if (cart.items.length === 0) {
+        alert('Votre panier est vide !');
+        return;
+    }
+    
+    openDeliveryModal();
+};
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM chargé - Initialisation livraison'); // Pour debug
+    
+    const modal = document.getElementById('deliveryModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeDeliveryModal();
+            }
+        });
+    }
+    
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDeliveryModal();
+        }
+    });
+});
     </script>
     <script>
 // SOLUTION SPÉCIALE POUR PC
@@ -5674,6 +6269,7 @@ observer.observe(document.body, {
     // Exécuter également après un délai pour être sûr
     setTimeout(fixSidebarForPC, 1000);
 })();
+
 </script>
 <!-- Panier Sidebar -->
 <div class="cart-sidebar" id="cartSidebar">
@@ -5718,6 +6314,87 @@ observer.observe(document.body, {
 <div class="cart-notification" id="cartNotification">
     ✅ Article ajouté au panier
 </div>
+<!-- MODAL DE CHOIX LIVRAISON/SUR PLACE -->
+<div class="delivery-modal" id="deliveryModal">
+    <div class="delivery-modal-content">
+        <button class="delivery-modal-close" onclick="closeDeliveryModal()">×</button>
+        
+        <h2 class="delivery-modal-title">🛵 Type de commande</h2>
+        
+        <div class="delivery-options">
+           <!-- OPTION SUR PLACE AVEC LOGO -->
+<div class="delivery-option" onclick="selectDeliveryType('surplace')" id="option-surplace">
+    <div class="delivery-option-icon">
+        <img src="black.jpg" alt="Black Rabbit" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #ffd700;">
+    </div>
+    <div class="delivery-option-title">Sur place</div>
+    <div class="delivery-option-desc">Dégustez chez nous</div>
+    <div class="delivery-option-price">+0 DT</div>
+</div>
 
+<!-- OPTION LIVRAISON (garde l'emoji ou remplace aussi) -->
+<div class="delivery-option" onclick="selectDeliveryType('livraison')" id="option-livraison">
+    <div class="delivery-option-icon">
+        <img src="xadv.jpg" alt="Black Rabbit" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #ffd700;">
+    </div>
+    <div class="delivery-option-title">Livraison</div>
+    <div class="delivery-option-desc">À domicile</div>
+    <div class="delivery-option-price">+3 DT</div>
+</div>
+       <!-- Formulaire de livraison -->
+<div class="delivery-form" id="deliveryForm">
+    <h3 class="delivery-form-title">📍 Informations de livraison</h3>
+    
+    <div class="delivery-form-group">
+        <label class="delivery-form-label">
+            <span class="delivery-form-icon">👤</span>
+            Nom complet *
+        </label>
+        <input type="text" class="delivery-form-input" id="deliveryName" placeholder="Votre nom">
+    </div>
+    
+    <div class="delivery-form-group">
+        <label class="delivery-form-label">
+            <span class="delivery-form-icon">📞</span>
+            Numéro de téléphone *
+        </label>
+        <input type="text" 
+               class="delivery-form-input" 
+               id="deliveryPhone" 
+               placeholder="XX XXX XXX" 
+               maxlength="8"
+               pattern="\d{8}"
+               inputmode="numeric"
+               onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+               title="Exactement 8 chiffres">
+        <small style="color: #ffd700; display: block; margin-top: 5px; font-size: 0.8rem;">
+            ⚠️ 8 chiffres exactement
+        </small>
+    </div>
+    
+    <div class="delivery-form-group">
+        <label class="delivery-form-label">
+            <span class="delivery-form-icon">📍</span>
+            Adresse complète *
+        </label>
+        <textarea class="delivery-form-textarea" id="deliveryAddress" placeholder="Rue, ville..."></textarea>
+    </div>
+</div>
+
+<!-- Boutons d'action (UN SEUL fois, à l'extérieur) -->
+<div class="delivery-actions" id="deliveryActions">
+    <button class="delivery-btn delivery-btn-secondary" onclick="closeDeliveryModal()">
+        Annuler
+    </button>
+    <button class="delivery-btn delivery-btn-primary" onclick="confirmDeliveryType()" id="confirmDeliveryBtn">
+        Confirmer la commande
+    </button>
+</div>
+<br>
+<!-- Instructions (À L'EXTÉRIEUR du formulaire) -->
+<div class="delivery-instructions" id="deliveryInstructions">
+    <p>🕒 Délai de livraison : 15-30 min</p>
+    <p>💳 Paiement à la livraison (espèces)</p>
+</div>
 </body>
 </html>
