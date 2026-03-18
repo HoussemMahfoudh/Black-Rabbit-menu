@@ -7,7 +7,13 @@
 <link rel="icon" href="assets/icons/black_rabbit_cafe_logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap">
+</noscript>
 <style>
 /* ─────────────────────────────────────────
    TOKENS
@@ -38,7 +44,7 @@
 ───────────────────────────────────────── */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 58px)}
-body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
+body{font-family:'DM Sans',system-ui, -apple-system, sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.5}
 img{display:block;max-width:100%}
 button,a{font-family:inherit;cursor:pointer}
 a{text-decoration:none}
@@ -1331,7 +1337,7 @@ function buildCard(item) {
   const safeName = item.n.replace(/'/g,"\\'").replace(/"/g,'&quot;');
   return `<article class="p-card${item.feat?' featured':''} reveal">
     <div class="p-card-img">
-      <img src="${src}" alt="${esc(item.n)}" loading="lazy" onerror="this.outerHTML='<div class=p-img-ph aria-hidden=true>◆</div>'">
+      <img src="${src}" alt="${esc(item.n)}" loading="lazy" width="268" height="182" onerror="this.outerHTML='<div class=p-img-ph aria-hidden=true>◆</div>'">
       ${item.feat ? '<span class="feat-pill" aria-label="Signature item">Signature</span>' : ''}
     </div>
     <div class="p-card-body">
